@@ -1,4 +1,5 @@
 # PatchCore — MVTec Anomaly Detection
+
 ### AI Challenge — Industrial Quality Control — Équipe 2 (Corel, Reda)
 
 ---
@@ -33,7 +34,6 @@ mvtec_anomaly_detection/
 
 ### MVP (3 categories: bottle, carpet, screw)
 ```bash
-cd mvtec-poc
 python main.py
 ```
 
@@ -59,8 +59,10 @@ python main.py --categories bottle cable hazelnut
 ## Architecture
 
 ```
-mvtec-poc/
+.
 ├── config.py               # Hyperparameters, paths, cost values
+├── main.py                 # Orchestrator
+├── utils.py                # Shared utilities
 ├── data/
 │   ├── loader.py           # MVTecDataset + DataLoader
 │   └── transforms.py       # Resize → CenterCrop(224) → Normalize
@@ -73,7 +75,8 @@ mvtec-poc/
 │   └── visualize.py        # All plots
 ├── inference/
 │   └── predict.py          # Single-image API + FPS benchmark
-└── main.py                 # Orchestrator
+├── results/                # Generated outputs (one folder per category)
+└── rapport.pdf             # Full project report
 ```
 
 ---
@@ -87,6 +90,8 @@ All results are saved to `results/<category>/`:
 - `cost_threshold_<category>.png` — Cost vs threshold sweep
 - `pareto_<category>.png` — Pareto front: cost vs recall (sensitivity analysis)
 - `examples_<category>.png` — Grid of TP / FP / FN / TN samples
+
+Results are available for all 15 MVTec categories: bottle, cable, capsule, carpet, grid, hazelnut, leather, metal_nut, pill, screw, tile, toothbrush, transistor, wood, zipper.
 
 ---
 
@@ -116,7 +121,7 @@ A sensitivity analysis varies the FN/FP ratio from 1 to 20 to show how the optim
 
 ## Validation Criteria
 
-- [x] End-to-end pipeline on ≥ 3 categories
+- [x] End-to-end pipeline on all 15 categories
 - [x] Image AUROC > 95% target on bottle
 - [x] All metrics implemented from scratch (no `sklearn.metrics`)
 - [x] Cost matrix produces a different threshold than F1

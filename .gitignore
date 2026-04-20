@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# Data
+mvtec_anomaly_detection/
+
+# Metadata
+.claude/
+
+# IDEs
+.vscode/
+.idea/
+
+# Large files
+*.pdf
+!rapport.pdf
+*.zip
+*.tar.gz
+
+# Results
+results/
